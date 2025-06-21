@@ -2,6 +2,7 @@
 import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
 import BToast from "@/components/BToast.vue";
+import {tools} from "@/helpers/constants.js";
 
 const showSidebar = ref(false);
 
@@ -35,39 +36,13 @@ const toggleSidebar = () => {
           </div>
           <nav class="nav flex-column">
             <RouterLink
-                to="/rodne-cislo-generator"
+                v-for="tool in tools"
+                :key="tool.url"
+                :to="tool.url"
                 class="nav-link text-white"
                 @click="showSidebar = false"
             >
-              <i class="bi bi-person-vcard me-2"></i>Rodné číslo
-            </RouterLink>
-            <RouterLink
-                to="/qr-generator"
-                class="nav-link text-white"
-                @click="showSidebar = false"
-            >
-              <i class="bi bi-qr-code me-2"></i>QR kód
-            </RouterLink>
-            <RouterLink
-                to="/pay-by-square-qr-generator"
-                class="nav-link text-white"
-                @click="showSidebar = false"
-            >
-              <i class="bi bi-qr-code me-2"></i>PayBySquare QR
-            </RouterLink>
-            <RouterLink
-                to="/iban-generator"
-                class="nav-link text-white"
-                @click="showSidebar = false"
-            >
-              <i class="bi bi-123 me-2"></i>IBAN generátor
-            </RouterLink>
-            <RouterLink
-                to="/iban-priklad"
-                class="nav-link text-white"
-                @click="showSidebar = false"
-            >
-              <i class="bi bi-check-circle me-2"></i>IBAN príklad
+              <i :class="tool.icon + ' me-2'"></i>{{ tool.title }}
             </RouterLink>
           </nav>
         </div>
@@ -96,11 +71,15 @@ const toggleSidebar = () => {
 <style lang="scss">
 $footer-height: 53px;
 body {
-  background: #f7f7f7;
+  background: #f7f7f7!important;
 }
 .app-container {
   min-height: calc(100vh - $footer-height);
   position: relative;
+}
+
+.main-content {
+  background: #f7f7f7;
 }
 
 .sidebar {
@@ -115,8 +94,8 @@ body {
 
 .mobile-menu-btn {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  bottom: 10px;
+  right: 10px;
   z-index: 1050;
   display: none;
 }
