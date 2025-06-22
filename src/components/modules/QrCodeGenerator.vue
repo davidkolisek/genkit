@@ -24,14 +24,21 @@ const removeImage = () => {
   imagePreview.value = null;
 };
 
-const generateQRCode = () => {
-  if (!url.value) return;
+const qrWidth = ref(600);
+const qrHeight = ref(600);
 
-  if (!qrCodeContainer.value) return;  // Fixed: Added .value here
+// Ensure width and height don't exceed 1000
+const getValidatedSize = (value) => Math.min(Math.max(100, value), 1000);
+
+const generateQRCode = () => {
+  if (!url.value || !qrCodeContainer.value) return;
+
+  const width = getValidatedSize(qrWidth.value);
+  const height = getValidatedSize(qrHeight.value);
 
   const options = {
-    width: 300,
-    height: 300,
+    width,
+    height,
     type: 'svg',
     data: url.value,
     dotsOptions: {
@@ -101,6 +108,38 @@ const resetGenerator = () => {
               >
             </div>
             <small class="text-muted">URL adresa, ktorú chcete zakódovať do QR kódu</small>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="h5 mb-3">
+              <span class="badge bg-warning me-2">1.5</span>
+              Nastavte veľkosť QR kódu
+            </h3>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="qrWidth" class="form-label">Šírka (max 1000px)</label>
+                <input
+                    type="number"
+                    id="qrWidth"
+                    class="form-control"
+                    v-model.number="qrWidth"
+                    min="100"
+                    max="1000"
+                >
+              </div>
+              <div class="col-md-6">
+                <label for="qrHeight" class="form-label">Výška (max 1000px)</label>
+                <input
+                    type="number"
+                    id="qrHeight"
+                    class="form-control"
+                    v-model.number="qrHeight"
+                    min="100"
+                    max="1000"
+                >
+              </div>
+            </div>
+            <small class="text-muted">Predvolená veľkosť je 600×600 px</small>
           </div>
 
           <!-- Krok 2: Nahratie obrázku (voliteľné) -->
