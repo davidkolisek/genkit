@@ -27,8 +27,20 @@ export const tools = [
     },
     {
         title: 'IBAN príklad',
-        description: 'Zobraz si ukážky platných IBAN čísel pre slovenské banky.',
+        description: 'Ukážky platných IBAN čísel.',
         icon: 'bi bi-check-circle',
         url: '/iban-priklad',
     },
+    {
+        title: 'Border Radius generátor',
+        description: 'Vytvor si vlastný border radius pre CSS s náhľadom.',
+        icon: 'bi bi-css',
+        url: '/border-radius-generator',
+    },
+    {
+        title: 'Textový prevodník',
+        description: 'Uprav text do rôznych formátov ako CamelCase, kebab-case, atď.',
+        icon: 'bi bi-alphabet',
+        url: '/textovy-prevodnik',
+    }
 ];

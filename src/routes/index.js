@@ -5,6 +5,8 @@ import PayBySquareQrGeneratorView from "@/pages/PayBySquareQrGeneratorView.vue";
 import BirthNumberGeneratorView from "@/pages/BirthNumberGeneratorView.vue";
 import IbanGeneratorView from "@/pages/IbanGeneratorView.vue";
 import IbanExamplesView from "@/pages/IbanExamplesView.vue";
+import BorderRadiusGeneratorView from "@/pages/BorderRadiusGeneratorView.vue";
+import ConvertCaseView from "@/pages/ConvertCaseView.vue";
 
 const routes = [
     {
@@ -36,6 +38,16 @@ const routes = [
         path: '/iban-priklad',
         component: IbanExamplesView,
         name: 'IbanExamplesView'
+    },
+    {
+        path: '/border-radius-generator',
+        component: BorderRadiusGeneratorView,
+        name: 'BorderRadiusGeneratorView'
+    },
+    {
+        path: '/textovy-prevodnik',
+        component: ConvertCaseView,
+        name: 'ConvertCaseView'
     }
 ]
 

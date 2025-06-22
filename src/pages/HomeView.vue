@@ -8,7 +8,7 @@ import {tools} from "@/helpers/constants.js";
     <div class="text-center mb-5">
       <h1 class="display-5 fw-bold">Vitajte v <span class="text-primary">GenKit</span></h1>
       <p class="lead text-muted">
-        Online nástroje pre generovanie slovenských údajov – rýchlo, jednoducho a zdarma.
+        Online nástroje pre generovanie údajov a iných užitočných funkcií pre bežných používateľov a vývojárov.
       </p>
     </div>
 

@@ -1,6 +1,17 @@
 <template>
   <div class="my-5">
     <h3 class="mb-4">IBAN Krajiny a príklady</h3>
+
+    <!-- Search input -->
+    <div class="mb-3">
+      <input
+          v-model="searchTerm"
+          type="text"
+          class="form-control"
+          placeholder="Hľadať krajinu..."
+      />
+    </div>
+
     <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
       <table class="table table-striped table-hover align-middle">
         <thead class="table-dark sticky-top">
@@ -12,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(item, index) in randomizedIBANs" :key="index">
+        <tr v-for="(item, index) in filteredIBANs" :key="index">
           <td>{{ item.krajina }}</td>
           <td>{{ item.kod }}</td>
           <td class="font-monospace">{{ item.iban }}</td>
@@ -32,10 +43,12 @@
   </div>
 </template>
 
+
 <script setup>
-import {  computed } from 'vue'
+import {computed, ref} from 'vue'
 import {useToastStore} from "@/store/toast.js";
 const toastStore = useToastStore();
+const searchTerm = ref('')
 
 
 const ibanData = [
@@ -140,6 +153,13 @@ const randomizedIBANs = computed(() => {
     kod: item.kod,
     iban: randomizeIBAN(item.iban),
   }))
+})
+
+// Filtered by search
+const filteredIBANs = computed(() => {
+  return randomizedIBANs.value.filter((item) =>
+      item.krajina.toLowerCase().includes(searchTerm.value.trim().toLowerCase())
+  )
 })
 
 function copyToClipboard(text) {
