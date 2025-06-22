@@ -84,6 +84,7 @@ body {
 
 .sidebar {
   width: 300px;
+  min-width: 300px;
   min-height: calc(100vh - $footer-height);
   transition: transform 0.3s ease;
   &-inner {

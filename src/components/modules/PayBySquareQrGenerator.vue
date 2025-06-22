@@ -5,7 +5,7 @@ const showAdvanced = ref(false);
 const qrUrl = ref('');
 const formData = ref({
   iban: '',
-  amount: '',
+  amount: '5',
   beneficiary_name: '',
   currency: 'EUR',
   due_date: '',
